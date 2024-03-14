@@ -10,8 +10,6 @@ object Main extends IOApp {
 
   private val HZ = 1000.0 / 144
 
-  Thread.sleep(1000)
-
   override def run(args: List[String]): IO[ExitCode] = {
     val filename = args.head
     for {
