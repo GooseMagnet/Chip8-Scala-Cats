@@ -1,0 +1,13 @@
+JAR="./target/scala-2.13/Chip8-assembly-0.1.0-SNAPSHOT.jar"
+if [ ! -e "$JAR" ]; then
+  sbt clean assembly
+fi
+
+if [ -z "$1" ]; then
+  >&2 echo "Usage: ./chip8 [PATH-TO-ROM]"
+  exit 1
+fi
+
+ROM=$1
+java -jar "$JAR" "$1"
+

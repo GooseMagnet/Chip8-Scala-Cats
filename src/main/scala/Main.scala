@@ -13,8 +13,9 @@ object Main extends IOApp {
   Thread.sleep(1000)
 
   override def run(args: List[String]): IO[ExitCode] = {
+    val filename = args.head
     for {
-      x <- Chip8.loadRom("./roms/NumbersTest.ch8").run(Chip8.create)
+      x <- Chip8.loadRom(filename).run(Chip8.create)
       _ <- loop.run(x._1)
     } yield (ExitCode.Success)
   }

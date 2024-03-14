@@ -159,7 +159,7 @@ object Chip8 {
   private def handleSubVxVy(twoBytes: Char): StateT[IO, Chip8, Unit] = StateT { c8 =>
     val x = getX(twoBytes)
     val y = getY(twoBytes)
-    val borrow: Byte = if (c8.registers(x) > c8.registers(y)) 1 else 0
+    val borrow: Byte = if ((0xFF & c8.registers(x)) > (0xFF & c8.registers(y))) 1 else 0
     val diff = (c8.registers(x) - c8.registers(y)) & 0x00ff
     IO(c8.copy(registers = c8.registers.updated(x, diff.toByte).updated(0xf, borrow)), ())
   }
